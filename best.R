@@ -1,13 +1,13 @@
-best <- function(state, outcome) {
+best <- function(state, outcome, datafile="outcome-of-care-measures.csv") {
   ## read outcome data
-  outcomes <- read.csv("outcome-of-care-measures.csv", colClasses = "character")
+  outcomes <- read.csv(datafile, colClasses = "character")
   
-  ## Check that state and outcome are valid
+  ## Check that state and outcome are OK
   if(!(state %in% outcomes$State)) { stop("invalid state")}
   if(!(outcome %in% c("heart attack","heart failure","pneumonia"))){ stop("invalid outcome")}
 
-  ## variable "cause" is a column number in a table we construct later
-  ## there must be a better way...
+  ## variable "cause" is a column number in a table we construct later...
+  ## ...there must be a better way...
   if(outcome == "heart attack") {cause <- 2}
   if(outcome == "heart failure") {cause <- 3}
   if(outcome == "pneumonia") {cause <- 4}
