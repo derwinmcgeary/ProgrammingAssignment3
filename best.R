@@ -22,10 +22,10 @@ best <- function(state, outcome, datafile="outcome-of-care-measures.csv") {
   
   # Now we have a nice matrix with the data we care about
   # We need to find the minimum value, discarding NAs ...
-  minharm <- range(as.numeric(stateoutcomes[,cause]), na.rm=TRUE)[1]
+  suppressWarnings(minharm <- range(as.numeric(stateoutcomes[,cause]), na.rm=TRUE)[1])
 
   # ... and put all rows with that value into bests
-  bests <- as.numeric(stateoutcomes[,cause]) == minharm
+  suppressWarnings(bests <- as.numeric(stateoutcomes[,cause]) == minharm)
   bests <- which(as.logical(bests))
 
   # ... and return stateoutcomes[bests,1]
